@@ -1,5 +1,6 @@
-import sys
 import random
+import sys
+
 import pygame
 
 # Inisialisasi Pygame
@@ -124,11 +125,27 @@ def draw_center_line(surface):
 
 def main():
     # Objek permainan
-    player = Paddle(20, SCREEN_HEIGHT // 2 - PADDLE_HEIGHT // 2, PADDLE_WIDTH, PADDLE_HEIGHT, PLAYER_SPEED)
-    ai = Paddle(SCREEN_WIDTH - 20 - PADDLE_WIDTH, SCREEN_HEIGHT // 2 - PADDLE_HEIGHT // 2, PADDLE_WIDTH, PADDLE_HEIGHT, AI_MAX_SPEED)
-    ball = Ball(SCREEN_WIDTH // 2 - BALL_SIZE // 2, SCREEN_HEIGHT // 2 - BALL_SIZE // 2, BALL_SIZE,
-                random.choice([-BALL_START_SPEED_X, BALL_START_SPEED_X]),
-                random.choice([-BALL_START_SPEED_Y, BALL_START_SPEED_Y]))
+    player = Paddle(
+        20,
+        SCREEN_HEIGHT // 2 - PADDLE_HEIGHT // 2,
+        PADDLE_WIDTH,
+        PADDLE_HEIGHT,
+        PLAYER_SPEED,
+    )
+    ai = Paddle(
+        SCREEN_WIDTH - 20 - PADDLE_WIDTH,
+        SCREEN_HEIGHT // 2 - PADDLE_HEIGHT // 2,
+        PADDLE_WIDTH,
+        PADDLE_HEIGHT,
+        AI_MAX_SPEED,
+    )
+    ball = Ball(
+        SCREEN_WIDTH // 2 - BALL_SIZE // 2,
+        SCREEN_HEIGHT // 2 - BALL_SIZE // 2,
+        BALL_SIZE,
+        random.choice([-BALL_START_SPEED_X, BALL_START_SPEED_X]),
+        random.choice([-BALL_START_SPEED_Y, BALL_START_SPEED_Y]),
+    )
 
     score_left = 0
     score_right = 0
@@ -186,7 +203,9 @@ def main():
         # Tampilkan pesan menang jika mencapai skor
         if score_left >= SCORE_TO_WIN or score_right >= SCORE_TO_WIN:
             winner = "Pemain" if score_left > score_right else "AI"
-            win_text = score_font.render(f"{winner} Menang! Tekan ESC untuk keluar.", True, WHITE)
+            win_text = score_font.render(
+                f"{winner} Menang! Tekan ESC untuk keluar.", True, WHITE
+            )
             win_rect = win_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
             screen.blit(win_text, win_rect)
 
